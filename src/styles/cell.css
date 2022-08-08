@@ -1,0 +1,25 @@
+body {
+  background: whitesmoke;
+}
+
+div.board div div:hover {
+  background-color: turquoise;
+  transition-duration: 0s;
+}
+
+.cell {
+  width: 2vw;
+  height: 2vw;
+  border: 1px solid turquoise;
+  /* border-radius: 20px; */
+  display: table-cell;
+  gap: 2px;
+}
+
+#start {
+  background-color: green;
+}
+
+#finish {
+  background-color: red;
+}
