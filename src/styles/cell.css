@@ -23,3 +23,7 @@ div.board div div:hover {
 #finish {
   background-color: red;
 }
+
+#wall {
+  background-color: black;
+}
