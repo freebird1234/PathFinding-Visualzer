@@ -5,7 +5,7 @@ const START = "start";
 const FINISH = "finish";
 const VISITED = "visited";
 const PATH = "path";
-
+var isMousePressedDown = false;
 class Cell extends React.Component {
   constructor(props) {
     super(props);
@@ -27,11 +27,13 @@ class Cell extends React.Component {
     if (this.state.isFinishNode) idName = FINISH;
 
     function handleWallCreation(e, isStartNode, isFinishNode, isWall, obj) {
-      if (!isStartNode && !isFinishNode) obj.setState({ isWall: !isWall });
+      if (!isStartNode && !isFinishNode && isMousePressedDown)
+        obj.setState({ isWall: !isWall });
     }
     return (
       <div
         onMouseDown={(e) => {
+          isMousePressedDown = true;
           handleWallCreation(
             e,
             this.state.isStartNode,
@@ -39,6 +41,18 @@ class Cell extends React.Component {
             this.state.isWall,
             this
           );
+        }}
+        onMouseOut={(e) => {
+          handleWallCreation(
+            e,
+            this.state.isStartNode,
+            this.state.isFinishNode,
+            this.state.isWall,
+            this
+          );
+        }}
+        onMouseUp={(e) => {
+          isMousePressedDown = false;
         }}
         className="cell"
         id={idName}
